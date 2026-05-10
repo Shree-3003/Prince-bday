@@ -81,7 +81,7 @@ body{
   color:white;
 }
 
-/* floating hearts */
+/* ================= FLOATING HEARTS ================= */
 
 .heart{
   position:absolute;
@@ -416,25 +416,69 @@ video{
   font-size:22px;
 }
 
-/* ================= PLAYLIST ================= */
+/* ================= GAMING SECTION ================= */
 
-.spotify{
+.gaming{
   text-align:center;
   width:min(100%,900px);
   padding:60px 30px;
   border-radius:40px;
 }
 
-.spotify h2{
+.gaming h2{
   font-size:clamp(35px,5vw,60px);
   margin-bottom:20px;
 }
 
-.spotify p{
+.gaming p{
   color:#cccccc;
   line-height:1.8;
   margin-bottom:40px;
   font-size:18px;
+}
+
+.game-buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+#achievement{
+  display:none;
+  margin-top:40px;
+  padding:30px;
+  border-radius:25px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+
+  animation:fadeIn 1s ease;
+}
+
+#achievement h3{
+  font-size:35px;
+  margin-bottom:15px;
+  color:#ffb3c1;
+}
+
+#achievement p{
+  font-size:20px;
+  line-height:1.8;
+  color:#ddd;
+}
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }
 
 /* ================= FINAL ================= */
@@ -474,7 +518,7 @@ section{
 }
 
 .hero p,
-.spotify p,
+.gaming p,
 .letter p,
 .final p{
   font-size:16px;
@@ -484,7 +528,7 @@ section{
   padding:40px 25px;
 }
 
-.spotify{
+.gaming{
   padding:40px 20px;
 }
 
@@ -501,6 +545,29 @@ section{
   line-height:1.5;
 }
 
+#achievement h3{
+  font-size:28px;
+}
+
+#achievement p{
+  font-size:17px;
+}
+
+}
+
+/* ================= CURSOR GLOW ================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle,#ff4d6d22,transparent 70%);
+  pointer-events:none;
+  z-index:-1;
+  top:var(--y);
+  left:var(--x);
+  transform:translate(-50%,-50%);
 }
 
 </style>
@@ -574,9 +641,6 @@ and all the tiny things that made me fall for you.
 
 <div class="countdown-box glass">
 
-<div class="small">
-</div>
-
 <div id="countdown"></div>
 
 </div>
@@ -602,12 +666,15 @@ My feelings for you cannot be explained by words.
 </h2>
 
 <p>
-You somehow became my comfort place, my safe space in the whole world. At the end of the day, i wish to wrapped around your arms.
-And I think that’s what makes you special. You make me feel loved every day.
-I always replay our memories in my head sometimes, 
+You somehow became my comfort place, my safe space in the whole world.
+At the end of the day, I wish to be wrapped around your arms.
+
+You make me feel loved every single day.
+
+I replay our memories in my head constantly —
 random conversations,
-stupid jokes that made me laugh a little harder,
-tiny moments that make our story beautiful.
+stupid jokes that made me laugh harder,
+tiny little moments that somehow became everything.
 
 Without realizing it,
 you became one of my favorite parts of life.
@@ -619,10 +686,14 @@ And honestly?
 If I had to choose again,
 I’d still choose you.
 Every single time.
-In Every universe and in Every lifetime. 
-Last time it was only Prince, now you've become my love, my world, my everything.
+In every universe and every lifetime.
 
-Happy Birthday My love❤️🧸
+Last time it was only Prince,
+now you've become my love,
+my world,
+my everything.
+
+Happy Birthday My Love ❤️🧸
 </p>
 
 </div>
@@ -695,36 +766,68 @@ Moments I Never Want To Forget
 
 </section>
 
-<!-- ================= PLAYLIST ================= -->
+<!-- ================= GAMING SECTION ================= -->
 
 <section>
 
-<div class="spotify glass">
+<div class="gaming glass">
 
 <div class="small">
-🎶 Songs That Feel Like You
+🎮 PLAYER TWO
 </div>
 
 <h2>
-Every good song started reminding me of you.
+If life was a game,<br>
+you’d still be my favorite player.
 </h2>
 
 <p>
-Some songs remind me of memories.
-Some remind me of feelings.
+Some people search for comfort.
+Some search for adventure.
 
 And somehow…
+I found both in you.
 
-every beautiful song started sounding like you.
+Thank you for being my safe place,
+my chaos,
+my best teammate,
+and the person I never get tired of.
+
+Achievement unlocked:
+You officially became
+my favorite human forever ❤️
 </p>
 
-<a href="https://open.spotify.com/" target="_blank">
+<div class="game-buttons">
 
-<button class="btn">
-Open Our Playlist 🎧
+<button class="btn" onclick="showAchievement()">
+Unlock Secret Achievement 🏆
 </button>
 
+<a href="https://store.steampowered.com/" target="_blank">
+<button class="btn">
+Future Game Date 🎮
+</button>
 </a>
+
+</div>
+
+<div id="achievement">
+
+<h3>
+🏆 Achievement Unlocked
+</h3>
+
+<p>
+You survived another year being insanely lovable.
+
+Reward earned:
+Unlimited hugs,
+kisses,
+and one clingy girlfriend forever ❤️
+</p>
+
+</div>
 
 </div>
 
@@ -842,6 +945,14 @@ behavior:"smooth"
 
 }
 
+/* ================= SECRET ACHIEVEMENT ================= */
+
+function showAchievement(){
+
+document.getElementById("achievement").style.display="block";
+
+}
+
 /* ================= SCROLL ANIMATION ================= */
 
 const sections = document.querySelectorAll("section");
@@ -884,6 +995,15 @@ particle.style.opacity = Math.random();
 document.body.appendChild(particle);
 
 }
+
+/* ================= CURSOR GLOW ================= */
+
+document.addEventListener("mousemove",(e)=>{
+
+document.body.style.setProperty("--x",e.clientX + "px");
+document.body.style.setProperty("--y",e.clientY + "px");
+
+});
 
 </script>
 
