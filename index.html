@@ -1380,7 +1380,104 @@ function openLetter(card){
 card.classList.toggle("open");
 
 }
+  /* ================= FLOATING MEMORY NOTES ================= */
 
+.memory-note{
+  position:fixed;
+
+  color:rgba(255,255,255,.18);
+
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:1px;
+
+  pointer-events:none;
+  user-select:none;
+
+  z-index:-1;
+
+  animation:floatMemory linear infinite;
+  white-space:nowrap;
+
+  text-shadow:0 0 20px rgba(255,255,255,.08);
+}
+
+@keyframes floatMemory{
+
+  from{
+    transform:
+    translateY(110vh)
+    translateX(0px)
+    rotate(0deg);
+
+    opacity:0;
+  }
+
+  15%{
+    opacity:.25;
+  }
+
+  85%{
+    opacity:.25;
+  }
+
+  to{
+    transform:
+    translateY(-120vh)
+    translateX(40px)
+    rotate(6deg);
+
+    opacity:0;
+  }
+
+}
+/* ================= FLOATING MEMORY NOTES ================= */
+
+const memories = [
+
+"miss you 🤍",
+"my safe place",
+"you feel like home",
+"forever us ♾️",
+"thinking about you",
+"you make me soft",
+"my favorite person",
+"love you endlessly",
+"late night calls 🌙",
+"you matter to me",
+"your voice >>>",
+"home is you",
+"still choosing you",
+"proud of you 🫶",
+"my comfort human",
+"beautiful soul ✨"
+
+];
+
+for(let i=0;i<20;i++){
+
+let note = document.createElement("div");
+
+note.classList.add("memory-note");
+
+note.innerHTML =
+memories[Math.floor(Math.random()*memories.length)];
+
+note.style.left =
+Math.random()*100 + "vw";
+
+note.style.animationDuration =
+(Math.random()*15 + 18) + "s";
+
+note.style.animationDelay =
+Math.random()*15 + "s";
+
+note.style.fontSize =
+(Math.random()*10 + 12) + "px";
+
+document.body.appendChild(note);
+
+}
 /* ================= CURSOR GLOW ================= */
 
 document.addEventListener("mousemove",(e)=>{
