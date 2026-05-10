@@ -537,6 +537,112 @@ video{
 
 }
 
+  /* ================= SECRET LETTERS ================= */
+
+.letters-container{
+  width:100%;
+  max-width:1100px;
+
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+
+  margin-top:60px;
+}
+
+.secret-letter{
+  position:relative;
+  min-height:230px;
+
+  border-radius:30px;
+
+  padding:30px;
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transition:.6s;
+}
+
+.secret-letter:hover{
+  transform:translateY(-10px) scale(1.02);
+}
+
+.letter-front,
+.letter-back{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:30px;
+
+  transition:1s ease;
+
+  backface-visibility:hidden;
+}
+
+.letter-front{
+  font-size:26px;
+  font-weight:700;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,255,255,.08),
+  rgba(255,255,255,.02)
+  );
+}
+
+.letter-back{
+
+  transform:rotateY(180deg);
+
+  font-size:18px;
+  line-height:1.9;
+
+  color:#f1f1f1;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,77,109,.12),
+  rgba(255,255,255,.03)
+  );
+}
+
+.secret-letter.open .letter-front{
+  transform:rotateY(180deg);
+}
+
+.secret-letter.open .letter-back{
+  transform:rotateY(0deg);
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+.secret-letter{
+  min-height:200px;
+}
+
+.letter-front{
+  font-size:22px;
+}
+
+.letter-back{
+  font-size:16px;
+  line-height:1.7;
+}
+
+}
+
 /* ================= CURSOR GLOW ================= */
 
 body::before{
@@ -819,6 +925,106 @@ and one clingy girlfriend forever ❤️
 
 </section>
 
+
+  <!-- ================= SECRET LETTERS ================= -->
+
+<section>
+
+<div class="small">
+💌 THINGS I NEVER SAY ENOUGH
+</div>
+
+<h1 class="gallery-title">
+Little things<br>
+you probably never noticed.
+</h1>
+
+<div class="letters-container">
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #01 ❤️
+</div>
+
+<div class="letter-back">
+I still smile reading our old texts sometimes.
+Even the random ones.
+</div>
+
+</div>
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #02 🌙
+</div>
+
+<div class="letter-back">
+You make difficult days feel softer
+without even trying.
+</div>
+
+</div>
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #03 🫶
+</div>
+
+<div class="letter-back">
+I feel safest with you.
+Like my heart finally found home.
+</div>
+
+</div>
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #04 ✨
+</div>
+
+<div class="letter-back">
+Sometimes I look at you
+and quietly thank life
+for letting our paths cross.
+</div>
+
+</div>
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #05 🎧
+</div>
+
+<div class="letter-back">
+Every beautiful song
+started sounding like you.
+</div>
+
+</div>
+
+<div class="secret-letter glass" onclick="openLetter(this)">
+
+<div class="letter-front">
+Open Letter #06 🧸
+</div>
+
+<div class="letter-back">
+You became my favorite person
+so naturally
+that I didn’t even realize when it happened.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- ================= FINAL ================= -->
 
 <section class="final">
@@ -1029,6 +1235,14 @@ threshold:.6
 });
 
 voiceObserver.observe(letterSection);
+
+  /* ================= SECRET LETTER REVEAL ================= */
+
+function openLetter(card){
+
+card.classList.toggle("open");
+
+}
 
 /* ================= CURSOR GLOW ================= */
 
