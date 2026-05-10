@@ -33,18 +33,52 @@ body{
 .bg{
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-3;
   background:
   radial-gradient(circle at top,#ff4d6d22,transparent 35%),
   radial-gradient(circle at bottom,#6a5cff22,transparent 35%),
   #050505;
+
+  animation:bgMove 15s ease infinite alternate;
 }
 
 .overlay{
   position:fixed;
   inset:0;
-  z-index:-1;
+  z-index:-2;
   backdrop-filter:blur(80px);
+}
+
+/* cinematic glow */
+
+.glow{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:#ff4d6d22;
+  filter:blur(120px);
+  animation:floatGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow{
+  from{
+    transform:translateY(-30px) translateX(-20px);
+  }
+
+  to{
+    transform:translateY(30px) translateX(20px);
+  }
+}
+
+@keyframes bgMove{
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.08);
+  }
 }
 
 /* ================= PARTICLES ================= */
@@ -63,6 +97,7 @@ body{
   from{
     transform:translateY(100vh);
   }
+
   to{
     transform:translateY(-10vh);
   }
@@ -78,6 +113,18 @@ section{
   flex-direction:column;
   padding:40px;
   position:relative;
+
+  transform:translateY(80px);
+  opacity:0;
+
+  transition:
+  opacity 1.4s ease,
+  transform 1.4s ease;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .glass{
@@ -85,20 +132,36 @@ section{
   border:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(20px);
   box-shadow:0 10px 40px rgba(0,0,0,.4);
+
+  transition:all .6s ease;
 }
 
-.fade{
-  opacity:0;
-  transform:translateY(30px);
-  transition:1s ease;
-}
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
+.glass:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 60px rgba(255,255,255,.08);
 }
 
 /* ================= HERO ================= */
+
+.hero,
+.final{
+  background:
+  radial-gradient(circle at center,
+  rgba(255,255,255,.03),
+  transparent 60%);
+}
+
+.hero h1,
+.final h1{
+  transform:translateY(30px);
+  animation:heroReveal 1.8s ease forwards;
+}
+
+@keyframes heroReveal{
+  to{
+    transform:translateY(0);
+  }
+}
 
 .hero h1{
   font-size:clamp(50px,9vw,130px);
@@ -185,6 +248,8 @@ video{
   border-radius:30px;
   margin-top:30px;
   box-shadow:0 0 80px rgba(255,77,109,.2);
+
+  transition:all .6s ease;
 }
 
 /* ================= GALLERY ================= */
@@ -211,10 +276,11 @@ video{
   height:100%;
   object-fit:cover;
   transition:1s;
+  transform:scale(1.02);
 }
 
 .card:hover img{
-  transform:scale(1.1);
+  transform:scale(1.12);
 }
 
 .caption{
@@ -269,6 +335,34 @@ video{
   font-size:20px;
 }
 
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.hero h1,
+.final h1{
+  font-size:55px;
+}
+
+.letter{
+  padding:35px;
+}
+
+.letter h2,
+.spotify h2{
+  font-size:40px;
+}
+
+video{
+  width:100%;
+}
+
+.gallery{
+  grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 
@@ -277,13 +371,16 @@ video{
 <div class="bg"></div>
 <div class="overlay"></div>
 
+<div class="glow" style="top:-100px;left:-100px;"></div>
+<div class="glow" style="bottom:-100px;right:-100px;"></div>
+
 <!-- MUSIC -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mp3">
 </audio>
 
 <!-- HERO -->
-<section class="hero fade">
+<section class="hero">
 
 <div class="small">
 A birthday experience made with love
@@ -312,7 +409,7 @@ Open Your Surprise 🎁
 </section>
 
 <!-- LETTER -->
-<section class="fade">
+<section>
 
 <div class="letter glass">
 
@@ -358,7 +455,7 @@ Happy Birthday ❤️
 </section>
 
 <!-- VIDEO -->
-<section class="fade">
+<section>
 
 <div class="small">
 🎥 One More Thing...
@@ -375,7 +472,7 @@ I made this for you.
 </section>
 
 <!-- MEMORIES -->
-<section class="fade">
+<section>
 
 <div class="small">
 📸 Our Little Timeline
@@ -413,7 +510,7 @@ Moments I Never Want To Forget
 </section>
 
 <!-- PLAYLIST -->
-<section class="fade">
+<section>
 
 <div class="spotify glass">
 
@@ -444,7 +541,7 @@ Open Our Playlist 🎧
 </section>
 
 <!-- FINAL -->
-<section class="final fade">
+<section class="final">
 
 <div class="small">
 Final Surprise
@@ -489,6 +586,7 @@ hours + " : " + minutes + " : " + seconds;
 
 if(distance < 0){
 clearInterval(countdown);
+
 document.getElementById("countdown").innerHTML =
 "🎉 IT'S YOUR DAY 🎉";
 }
@@ -498,27 +596,39 @@ document.getElementById("countdown").innerHTML =
 /* ================= MUSIC ================= */
 
 function openGift(){
+
 document.getElementById("music").play();
 
 window.scrollTo({
 top:window.innerHeight,
 behavior:"smooth"
 });
+
 }
 
-/* ================= FADE ================= */
+/* ================= APPLE STYLE SCROLL ================= */
 
-const fades = document.querySelectorAll('.fade');
+const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver(entries=>{
+
 entries.forEach(entry=>{
+
 if(entry.isIntersecting){
-entry.target.classList.add('show');
+
+entry.target.classList.add("show");
+
 }
-});
+
 });
 
-fades.forEach(el=>observer.observe(el));
+},{
+threshold:.15
+});
+
+sections.forEach(section=>{
+observer.observe(section);
+});
 
 /* ================= PARTICLES ================= */
 
