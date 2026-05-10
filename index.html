@@ -34,7 +34,6 @@ body{
   position:fixed;
   inset:0;
   z-index:-3;
-
   background:
   radial-gradient(circle at top,#ff4d6d22,transparent 35%),
   radial-gradient(circle at bottom,#6a5cff22,transparent 35%),
@@ -49,6 +48,8 @@ body{
   z-index:-2;
   backdrop-filter:blur(80px);
 }
+
+/* cinematic glow */
 
 .glow{
   position:absolute;
@@ -77,60 +78,6 @@ body{
 
   to{
     transform:scale(1.08);
-  }
-}
-
-/* ================= INTRO ================= */
-
-#intro{
-  position:fixed;
-  inset:0;
-  background:black;
-  z-index:9999;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-
-  transition:1.5s ease;
-}
-
-.intro-text{
-  text-align:center;
-  max-width:700px;
-  padding:20px;
-}
-
-.intro-line{
-  opacity:0;
-  transform:translateY(20px);
-
-  animation:fadeLine 1.5s forwards;
-}
-
-.intro-line:nth-child(1){
-  animation-delay:1s;
-}
-
-.intro-line:nth-child(2){
-  animation-delay:3s;
-}
-
-.intro-line:nth-child(3){
-  animation-delay:5s;
-}
-
-.intro-line h1{
-  font-size:clamp(30px,6vw,70px);
-  line-height:1.4;
-  font-weight:700;
-}
-
-@keyframes fadeLine{
-  to{
-    opacity:1;
-    transform:translateY(0);
   }
 }
 
@@ -194,24 +141,34 @@ section.show{
   box-shadow:0 20px 60px rgba(255,255,255,.08);
 }
 
-.chapter{
-  letter-spacing:6px;
-  text-transform:uppercase;
-  color:#ffb3c1;
-  font-size:12px;
-  margin-bottom:20px;
+/* ================= HERO ================= */
+
+.hero,
+.final{
+  background:
+  radial-gradient(circle at center,
+  rgba(255,255,255,.03),
+  transparent 60%);
 }
 
-/* ================= HERO ================= */
+.hero h1,
+.final h1{
+  transform:translateY(30px);
+  animation:heroReveal 1.8s ease forwards;
+}
+
+@keyframes heroReveal{
+  to{
+    transform:translateY(0);
+  }
+}
 
 .hero h1{
   font-size:clamp(50px,9vw,130px);
   line-height:1;
   text-align:center;
   font-weight:900;
-
   background:linear-gradient(to right,#fff,#ffb3c1,#ff4d6d);
-
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
@@ -234,6 +191,14 @@ section.show{
 #countdown{
   font-size:clamp(40px,7vw,90px);
   font-weight:700;
+}
+
+.small{
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#ffb3c1;
+  font-size:12px;
+  margin-bottom:10px;
 }
 
 /* ================= BUTTON ================= */
@@ -283,6 +248,8 @@ video{
   border-radius:30px;
   margin-top:30px;
   box-shadow:0 0 80px rgba(255,77,109,.2);
+
+  transition:all .6s ease;
 }
 
 /* ================= GALLERY ================= */
@@ -301,6 +268,7 @@ video{
   border-radius:30px;
   position:relative;
   height:500px;
+  transition:.5s;
 }
 
 .card img{
@@ -308,10 +276,11 @@ video{
   height:100%;
   object-fit:cover;
   transition:1s;
+  transform:scale(1.02);
 }
 
 .card:hover img{
-  transform:scale(1.1);
+  transform:scale(1.12);
 }
 
 .caption{
@@ -326,15 +295,33 @@ video{
   font-size:26px;
 }
 
+/* ================= PLAYLIST ================= */
+
+.spotify{
+  text-align:center;
+  max-width:900px;
+  padding:70px;
+  border-radius:40px;
+}
+
+.spotify h2{
+  font-size:60px;
+  margin-bottom:20px;
+}
+
+.spotify p{
+  color:#cccccc;
+  line-height:1.8;
+  margin-bottom:40px;
+}
+
 /* ================= FINAL ================= */
 
 .final h1{
   font-size:clamp(55px,10vw,140px);
   text-align:center;
   line-height:1;
-
   background:linear-gradient(to right,#fff,#ffb3c1,#ff4d6d);
-
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
@@ -361,8 +348,13 @@ video{
   padding:35px;
 }
 
-.letter h2{
+.letter h2,
+.spotify h2{
   font-size:40px;
+}
+
+video{
+  width:100%;
 }
 
 .gallery{
@@ -376,35 +368,6 @@ video{
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-
-<div class="intro-text">
-
-<div class="intro-line">
-<h1>
-I wanted this birthday<br>
-to feel different.
-</h1>
-</div>
-
-<div class="intro-line">
-<h1>
-So I made something<br>
-only you would understand.
-</h1>
-</div>
-
-<div class="intro-line">
-<h1>
-Happy Birthday ❤️
-</h1>
-</div>
-
-</div>
-
-</div>
-
 <div class="bg"></div>
 <div class="overlay"></div>
 
@@ -413,14 +376,14 @@ Happy Birthday ❤️
 
 <!-- MUSIC -->
 <audio id="music" loop>
-<source src="music.mp3" type="audio/mp3">
+  <source src="music.mp3" type="audio/mp3">
 </audio>
 
 <!-- HERO -->
 <section class="hero">
 
-<div class="chapter">
-CHAPTER 01 — THE BEGINNING
+<div class="small">
+A birthday experience made with love
 </div>
 
 <h1>
@@ -435,9 +398,7 @@ and all the tiny things that made me fall for you.
 </p>
 
 <div class="countdown-box glass">
-<div class="chapter">
-Countdown To Midnight
-</div>
+<div class="small">Countdown To Midnight</div>
 <div id="countdown"></div>
 </div>
 
@@ -450,11 +411,11 @@ Open Your Surprise 🎁
 <!-- LETTER -->
 <section>
 
-<div class="chapter">
-CHAPTER 02 — THINGS I NEVER SAY ENOUGH
-</div>
-
 <div class="letter glass">
+
+<div class="small">
+💌 A Letter For You
+</div>
 
 <h2>
 Some feelings are hard to explain.
@@ -496,8 +457,8 @@ Happy Birthday ❤️
 <!-- VIDEO -->
 <section>
 
-<div class="chapter">
-CHAPTER 03 — A LITTLE PIECE OF MY HEART
+<div class="small">
+🎥 One More Thing...
 </div>
 
 <h1 style="font-size:70px;text-align:center;">
@@ -513,8 +474,8 @@ I made this for you.
 <!-- MEMORIES -->
 <section>
 
-<div class="chapter">
-CHAPTER 04 — MY FAVORITE MEMORIES
+<div class="small">
+📸 Our Little Timeline
 </div>
 
 <h1 style="font-size:70px;text-align:center;">
@@ -525,29 +486,23 @@ Moments I Never Want To Forget
 
 <div class="card glass">
 <img src="photo1.jpg">
-
 <div class="caption">
 <h3>The day I realized I liked you too much ❤️</h3>
 </div>
-
 </div>
 
 <div class="card glass">
 <img src="photo2.jpg">
-
 <div class="caption">
 <h3>One of my favorite memories ever ✨</h3>
 </div>
-
 </div>
 
 <div class="card glass">
 <img src="photo3.jpg">
-
 <div class="caption">
 <h3>You make life prettier honestly 🌙</h3>
 </div>
-
 </div>
 
 </div>
@@ -557,11 +512,11 @@ Moments I Never Want To Forget
 <!-- PLAYLIST -->
 <section>
 
-<div class="chapter">
-CHAPTER 05 — SONGS THAT FEEL LIKE YOU
-</div>
+<div class="spotify glass">
 
-<div class="letter glass" style="text-align:center;">
+<div class="small">
+🎶 Songs That Feel Like You
+</div>
 
 <h2>
 Every good song started reminding me of you.
@@ -569,20 +524,16 @@ Every good song started reminding me of you.
 
 <p>
 Some songs remind me of memories.
-
 Some remind me of feelings.
 
 And somehow…
-
 every beautiful song started sounding like you.
 </p>
 
 <a href="https://open.spotify.com/" target="_blank">
-
 <button class="btn">
 Open Our Playlist 🎧
 </button>
-
 </a>
 
 </div>
@@ -592,8 +543,8 @@ Open Our Playlist 🎧
 <!-- FINAL -->
 <section class="final">
 
-<div class="chapter">
-FINAL CHAPTER — YOU ❤️
+<div class="small">
+Final Surprise
 </div>
 
 <h1>
@@ -617,20 +568,6 @@ One Last Gift 🎁
 
 <script>
 
-/* ================= INTRO ================= */
-
-setTimeout(()=>{
-
-document.getElementById("intro").style.opacity="0";
-
-setTimeout(()=>{
-
-document.getElementById("intro").style.display="none";
-
-},1500);
-
-},8500);
-
 /* ================= COUNTDOWN ================= */
 
 const targetDate = new Date("May 10, 2026 00:00:00").getTime();
@@ -638,25 +575,20 @@ const targetDate = new Date("May 10, 2026 00:00:00").getTime();
 const countdown = setInterval(()=>{
 
 const now = new Date().getTime();
-
 const distance = targetDate - now;
 
 const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-
 const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-
 const seconds = Math.floor((distance%(1000*60))/1000);
 
 document.getElementById("countdown").innerHTML =
 hours + " : " + minutes + " : " + seconds;
 
 if(distance < 0){
-
 clearInterval(countdown);
 
 document.getElementById("countdown").innerHTML =
 "🎉 IT'S YOUR DAY 🎉";
-
 }
 
 },1000);
