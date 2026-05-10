@@ -643,6 +643,49 @@ video{
 
 }
 
+  /* ================= FINAL NOTE ================= */
+
+.final-note{
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.final-note::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  radial-gradient(circle at center,
+  rgba(255,255,255,.04),
+  transparent 70%);
+
+  pointer-events:none;
+}
+
+.memory-line{
+  width:120px;
+  height:2px;
+
+  margin:40px auto;
+
+  background:
+  linear-gradient(to right,
+  transparent,
+  #ff4d6d,
+  transparent);
+}
+
+.ending-quote{
+  font-size:clamp(22px,4vw,34px);
+  line-height:1.6;
+  font-weight:600;
+
+  color:#ffd6de;
+
+  margin-top:10px;
+}
 /* ================= CURSOR GLOW ================= */
 
 body::before{
@@ -1071,6 +1114,68 @@ Let's celebrate all our birthdays together at our home soon and remember it ever
 <button class="btn">
 One Last Gift 🎁
 </button>
+
+</section>
+
+  <!-- ================= LAST NOTE ================= -->
+
+<section>
+
+<div class="letter glass final-note">
+
+<div class="small">
+CHAPTER 07 — ONE LAST THING
+</div>
+
+<h2>
+Before this night ends...
+</h2>
+
+<p>
+I know this is just a website.
+
+Just some code,
+music,
+photos,
+letters,
+and feelings placed together carefully.
+
+But every single part of this
+was made with you in my heart.
+
+I wanted you to feel loved tonight.
+
+Not just casually loved.
+
+But deeply,
+softly,
+completely loved.
+
+The kind of love that stays.
+
+So if someday life gets difficult,
+or you ever doubt yourself,
+come back here.
+
+And remember:
+
+There is someone out there
+who loves you endlessly,
+thinks about you constantly,
+and feels lucky
+just because you exist.
+
+And I always will ❤️
+</p>
+
+<div class="memory-line"></div>
+
+<h3 class="ending-quote">
+"Every love story is beautiful,
+but you'll always be my favorite one."
+</h3>
+
+</div>
 
 </section>
 
