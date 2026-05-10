@@ -847,62 +847,6 @@ One Last Gift 🎁
 
 <script>
 
-/* ================= START EXPERIENCE ================= */
-
-function startExperience(){
-
-document.getElementById("music").play();
-
-document.getElementById("start-screen").style.opacity="0";
-
-setTimeout(()=>{
-
-document.getElementById("start-screen").style.display="none";
-
-document.getElementById("intro").style.opacity="1";
-
-},2000);
-
-/* intro fade */
-
-setTimeout(()=>{
-
-document.getElementById("intro").style.opacity="0";
-
-setTimeout(()=>{
-
-document.getElementById("intro").style.display="none";
-
-},2000);
-
-},10000);
-
-}
-
-/* ================= FLOATING HEARTS ================= */
-
-for(let i=0;i<30;i++){
-
-let heart = document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML = "❤";
-
-heart.style.left = Math.random()*100 + "vw";
-
-heart.style.fontSize =
-(Math.random()*25 + 10) + "px";
-
-heart.style.animationDuration =
-(Math.random()*8 + 6) + "s";
-
-heart.style.animationDelay =
-(Math.random()*5) + "s";
-
-document.getElementById("intro").appendChild(heart);
-
-}
 
 /* ================= STARS ================= */
 
