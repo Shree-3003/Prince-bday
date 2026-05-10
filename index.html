@@ -11,6 +11,33 @@
 
 <style>
 
+
+.star{
+  position:fixed;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  z-index:-2;
+
+  animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+
+  from{
+    opacity:.2;
+    transform:scale(1);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1.8);
+  }
+
+}
+
+
 /* ================= RESET ================= */
 
 *{
@@ -983,6 +1010,27 @@ particle.style.opacity = Math.random();
 document.body.appendChild(particle);
 
 }
+  /* ================= TWINKLING STARS ================= */
+
+for(let i=0;i<80;i++){
+
+let star = document.createElement("div");
+
+star.classList.add("star");
+
+star.style.left = Math.random()*100 + "vw";
+
+star.style.top = Math.random()*100 + "vh";
+
+star.style.animationDelay =
+Math.random()*5 + "s";
+
+star.style.animationDuration =
+(Math.random()*3 + 2) + "s";
+
+document.body.appendChild(star);
+
+}
 
 /* ================= CURSOR GLOW ================= */
 
@@ -990,6 +1038,8 @@ document.addEventListener("mousemove",(e)=>{
 
 document.body.style.setProperty("--x",e.clientX + "px");
 document.body.style.setProperty("--y",e.clientY + "px");
+
+  
 
 });
 
