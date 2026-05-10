@@ -233,6 +233,48 @@ body{
   }
 
 }
+  /* ================= HEARTS ================= */
+
+.heart{
+  position:fixed;
+  bottom:-50px;
+
+  color:#ff4d6d;
+
+  opacity:.7;
+
+  pointer-events:none;
+
+  animation:floatHearts linear infinite;
+
+  z-index:0;
+}
+
+@keyframes floatHearts{
+
+  from{
+    transform:
+    translateY(0)
+    translateX(0)
+    rotate(0deg);
+
+    opacity:0;
+  }
+
+  10%{
+    opacity:.8;
+  }
+
+  to{
+    transform:
+    translateY(-120vh)
+    translateX(40px)
+    rotate(360deg);
+
+    opacity:0;
+  }
+
+}
 
 /* ================= GENERAL ================= */
 
@@ -691,21 +733,15 @@ video{
 
 .memory-note{
   position:fixed;
-
   color:rgba(255,255,255,.18);
-
   font-size:14px;
   font-weight:500;
   letter-spacing:1px;
-
   pointer-events:none;
   user-select:none;
-
-  z-index:-1;
-
+  z-index:1;
   animation:floatMemory linear infinite;
   white-space:nowrap;
-
   text-shadow:0 0 20px rgba(255,255,255,.08);
 }
 
