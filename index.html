@@ -1432,57 +1432,6 @@ function openLetter(card){
 card.classList.toggle("open");
 
 }
-  /* ================= FLOATING MEMORY NOTES ================= */
-
-.memory-note{
-  position:fixed;
-
-  color:rgba(255,255,255,.18);
-
-  font-size:14px;
-  font-weight:500;
-  letter-spacing:1px;
-
-  pointer-events:none;
-  user-select:none;
-
-  z-index:-1;
-
-  animation:floatMemory linear infinite;
-  white-space:nowrap;
-
-  text-shadow:0 0 20px rgba(255,255,255,.08);
-}
-
-@keyframes floatMemory{
-
-  from{
-    transform:
-    translateY(110vh)
-    translateX(0px)
-    rotate(0deg);
-
-    opacity:0;
-  }
-
-  15%{
-    opacity:.25;
-  }
-
-  85%{
-    opacity:.25;
-  }
-
-  to{
-    transform:
-    translateY(-120vh)
-    translateX(40px)
-    rotate(6deg);
-
-    opacity:0;
-  }
-
-}
 /* ================= FLOATING MEMORY NOTES ================= */
 
 const memories = [
