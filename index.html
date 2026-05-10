@@ -123,96 +123,7 @@ body{
 
 }
 
-/* ================= INTRO ================= */
 
-#intro{
-  position:fixed;
-  inset:0;
-  background:black;
-  z-index:99999;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  overflow:hidden;
-
-  opacity:0;
-  transition:opacity 2s ease;
-}
-
-.intro-content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:20px;
-  width:100%;
-  max-width:900px;
-}
-
-.intro-line{
-  opacity:0;
-  transform:translateY(40px);
-
-  animation:revealText 1.8s forwards;
-}
-
-.intro-line:nth-child(1){
-  animation-delay:1s;
-}
-
-.intro-line:nth-child(2){
-  animation-delay:4s;
-}
-
-.intro-line:nth-child(3){
-  animation-delay:7s;
-}
-
-.intro-line h1{
-  font-size:clamp(32px,6vw,75px);
-  line-height:1.4;
-  font-weight:700;
-  color:white;
-}
-
-@keyframes revealText{
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
-/* ================= HEARTS ================= */
-
-.heart{
-  position:absolute;
-  bottom:-50px;
-  color:#ff4d6d;
-  opacity:.5;
-
-  animation:floatHeart linear infinite;
-}
-
-@keyframes floatHeart{
-
-  from{
-    transform:translateY(0) scale(1);
-    opacity:0;
-  }
-
-  20%{
-    opacity:.7;
-  }
-
-  to{
-    transform:translateY(-120vh) scale(1.5);
-    opacity:0;
-  }
-
-}
 
 /* ================= STARS ================= */
 
@@ -693,7 +604,7 @@ section{
 <div class="start-content">
 
 <h1 class="start-title">
-PRESS START ❤️
+HAPPY BIRTHDAY MY LOVE❤️
 </h1>
 
 <p class="start-sub">
@@ -708,35 +619,6 @@ START
 
 </div>
 
-<!-- ================= INTRO ================= -->
-
-<div id="intro">
-
-<div class="intro-content">
-
-<div class="intro-line">
-<h1>
-I wanted this birthday<br>
-to feel different.
-</h1>
-</div>
-
-<div class="intro-line">
-<h1>
-So I made something<br>
-only you would understand.
-</h1>
-</div>
-
-<div class="intro-line">
-<h1>
-Happy Birthday ❤️
-</h1>
-</div>
-
-</div>
-
-</div>
 
 <!-- ================= BACKGROUND ================= -->
 
