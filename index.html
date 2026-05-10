@@ -733,16 +733,25 @@ video{
 
 .memory-note{
   position:fixed;
-  color:rgba(255,255,255,.18);
+  color:rgba(255,255,255,.22);
+
   font-size:14px;
   font-weight:500;
+
   letter-spacing:1px;
+
   pointer-events:none;
   user-select:none;
-  z-index:1;
+
+  z-index:9999; /* FIX */
+
   animation:floatMemory linear infinite;
+
   white-space:nowrap;
+
   text-shadow:0 0 20px rgba(255,255,255,.08);
+
+  mix-blend-mode:screen; /* OPTIONAL */
 }
 
 @keyframes floatMemory{
@@ -757,11 +766,11 @@ video{
   }
 
   15%{
-    opacity:.25;
+    opacity:.55;
   }
 
   85%{
-    opacity:.25;
+    opacity:.55;
   }
 
   to{
@@ -1502,6 +1511,8 @@ memories[Math.floor(Math.random()*memories.length)];
 
 note.style.left =
 Math.random()*100 + "vw";
+
+note.style.top = "100vh";
 
 note.style.animationDuration =
 (Math.random()*15 + 18) + "s";
