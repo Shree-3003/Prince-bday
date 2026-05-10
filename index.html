@@ -1,203 +1,544 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Favorite Human ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-.container {
-  padding: 40px;
-  animation: fadeIn 1.5s ease;
+html{
+  scroll-behavior:smooth;
 }
 
-.hidden { display: none; }
-
-h1, h2 {
-  animation: fadeUp 1s ease;
+body{
+  font-family:'Poppins',sans-serif;
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
 }
 
-button {
-  padding: 12px 22px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 25px;
-  background: linear-gradient(45deg, #ff4d6d, #ff758f);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+/* ================= BACKGROUND ================= */
+
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+  radial-gradient(circle at top,#ff4d6d22,transparent 35%),
+  radial-gradient(circle at bottom,#6a5cff22,transparent 35%),
+  #050505;
 }
 
-button:hover {
-  transform: scale(1.08);
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  backdrop-filter:blur(80px);
 }
 
-img, video {
-  max-width: 90%;
-  border-radius: 15px;
-  margin-top: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+/* ================= PARTICLES ================= */
+
+.particle{
+  position:fixed;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:white;
+  opacity:.4;
+  animation:float 10s linear infinite;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+@keyframes float{
+  from{
+    transform:translateY(100vh);
+  }
+  to{
+    transform:translateY(-10vh);
+  }
 }
 
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+/* ================= GENERAL ================= */
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:40px;
+  position:relative;
 }
 
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  color: #ff4d6d;
-  animation: floatUp 6s linear infinite;
+.glass{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
 }
 
-@keyframes floatUp {
-  0% {transform: translateY(0) scale(1);}
-  100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
 }
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= HERO ================= */
+
+.hero h1{
+  font-size:clamp(50px,9vw,130px);
+  line-height:1;
+  text-align:center;
+  font-weight:900;
+  background:linear-gradient(to right,#fff,#ffb3c1,#ff4d6d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  margin-top:25px;
+  max-width:700px;
+  text-align:center;
+  color:#cccccc;
+  line-height:1.8;
+  font-size:18px;
+}
+
+.countdown-box{
+  margin-top:40px;
+  padding:30px 50px;
+  border-radius:30px;
+}
+
+#countdown{
+  font-size:clamp(40px,7vw,90px);
+  font-weight:700;
+}
+
+.small{
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#ffb3c1;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  margin-top:40px;
+  padding:18px 40px;
+  border:none;
+  border-radius:100px;
+  background:linear-gradient(45deg,#ff4d6d,#ff758f);
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:.4s;
+  font-weight:600;
+  box-shadow:0 0 40px rgba(255,77,109,.4);
+}
+
+.btn:hover{
+  transform:scale(1.08);
+}
+
+/* ================= LETTER ================= */
+
+.letter{
+  max-width:850px;
+  border-radius:35px;
+  padding:60px;
+}
+
+.letter h2{
+  font-size:55px;
+  margin-bottom:30px;
+}
+
+.letter p{
+  color:#dddddd;
+  line-height:2;
+  font-size:18px;
+}
+
+/* ================= VIDEO ================= */
+
+video{
+  width:90%;
+  max-width:950px;
+  border-radius:30px;
+  margin-top:30px;
+  box-shadow:0 0 80px rgba(255,77,109,.2);
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  width:100%;
+  max-width:1200px;
+  margin-top:50px;
+}
+
+.card{
+  overflow:hidden;
+  border-radius:30px;
+  position:relative;
+  height:500px;
+  transition:.5s;
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:1s;
+}
+
+.card:hover img{
+  transform:scale(1.1);
+}
+
+.caption{
+  position:absolute;
+  bottom:0;
+  padding:25px;
+  width:100%;
+  background:linear-gradient(to top,black,transparent);
+}
+
+.caption h3{
+  font-size:26px;
+}
+
+/* ================= PLAYLIST ================= */
+
+.spotify{
+  text-align:center;
+  max-width:900px;
+  padding:70px;
+  border-radius:40px;
+}
+
+.spotify h2{
+  font-size:60px;
+  margin-bottom:20px;
+}
+
+.spotify p{
+  color:#cccccc;
+  line-height:1.8;
+  margin-bottom:40px;
+}
+
+/* ================= FINAL ================= */
+
+.final h1{
+  font-size:clamp(55px,10vw,140px);
+  text-align:center;
+  line-height:1;
+  background:linear-gradient(to right,#fff,#ffb3c1,#ff4d6d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.final p{
+  margin-top:30px;
+  max-width:700px;
+  text-align:center;
+  color:#cccccc;
+  line-height:1.8;
+  font-size:20px;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- Background music -->
-<audio id="bgMusic" loop>
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
   <source src="music.mp3" type="audio/mp3">
 </audio>
 
-<div id="countdownPage" class="container">
-  <h2>Something special is waiting… ❤️</h2>
-  <h1 id="countdown"></h1>
+<!-- HERO -->
+<section class="hero fade">
+
+<div class="small">
+A birthday experience made with love
 </div>
 
-<div id="mainContent" class="hidden container">
+<h1>
+For My Favorite<br>Human ❤️
+</h1>
 
-  <h1>🎉 Happy Birthday ❤️</h1>
+<p>
+Tonight isn’t just your birthday.
+It’s a little collection of memories,
+feelings, moments,
+and all the tiny things that made me fall for you.
+</p>
 
-  <!-- Step 1 -->
-  <div id="step1">
-    <p>I made something just for you…</p>
-    <button onclick="startExperience()">Open Gift 🎁</button>
-  </div>
+<div class="countdown-box glass">
+<div class="small">Countdown To Midnight</div>
+<div id="countdown"></div>
+</div>
 
-  <!-- Step 2 -->
-  <div id="step2" class="hidden">
-    <h2>💌 For You</h2>
-    <p>
-      From the moment you came into my life, everything just felt… lighter.  
-      You turned ordinary days into something I actually look forward to.  
+<button class="btn" onclick="openGift()">
+Open Your Surprise 🎁
+</button>
 
-      I don’t know if I say this enough, but you matter to me more than you realize.  
-      Your smile, your voice, the way you exist in my life—it all means everything.  
+</section>
 
-      I’m really grateful I get to call you mine. ❤️  
+<!-- LETTER -->
+<section class="fade">
 
-      And today… is all about you.  
-    </p>
-    <button onclick="nextStep(3)">Next →</button>
-  </div>
+<div class="letter glass">
 
-  <!-- Step 3 -->
-  <div id="step3" class="hidden">
-    <h2>🎥 Watch this</h2>
-    <video controls>
-      <source src="video.mp4" type="video/mp4">
-    </video>
-    <br>
-    <button onclick="nextStep(4)">Next →</button>
-  </div>
+<div class="small">
+💌 A Letter For You
+</div>
 
-  <!-- Step 4 -->
-  <div id="step4" class="hidden">
-    <h2>🎶 Our Playlist</h2>
-    <p>Every song here reminds me of you ❤️</p>
-    <a href="https://open.spotify.com/" target="_blank">Listen here</a>
-    <br>
-    <button onclick="nextStep(5)">Next →</button>
-  </div>
+<h2>
+Some feelings are hard to explain.
+</h2>
 
-  <!-- Step 5 -->
-  <div id="step5" class="hidden">
-    <h2>📸 Our Memories</h2>
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <br>
-    <button onclick="nextStep(6)">Final Surprise 🎁</button>
-  </div>
+<p>
+You somehow became my comfort place without even trying.
 
-  <!-- Final -->
-  <div id="step6" class="hidden">
-    <h2>🎁 Surprise</h2>
-    <p>
-      This isn’t the only gift…  
-      There’s something waiting for you in real life too 😉  
-    </p>
-  </div>
+And I think that’s what makes you special.
+
+I still replay our memories in my head sometimes —
+random conversations,
+stupid jokes,
+tiny moments that probably meant nothing to anyone else…
+
+but meant everything to me.
+
+You made ordinary days feel exciting.
+You made difficult days easier.
+And somehow,
+without realizing it,
+you became one of my favorite parts of life.
+
+I don’t think you fully understand how much your existence changed mine.
+
+And honestly?
+
+If I had to choose again,
+I’d still choose you.
+Every single time.
+
+Happy Birthday ❤️
+</p>
 
 </div>
+
+</section>
+
+<!-- VIDEO -->
+<section class="fade">
+
+<div class="small">
+🎥 One More Thing...
+</div>
+
+<h1 style="font-size:70px;text-align:center;">
+I made this for you.
+</h1>
+
+<video controls>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+</section>
+
+<!-- MEMORIES -->
+<section class="fade">
+
+<div class="small">
+📸 Our Little Timeline
+</div>
+
+<h1 style="font-size:70px;text-align:center;">
+Moments I Never Want To Forget
+</h1>
+
+<div class="gallery">
+
+<div class="card glass">
+<img src="photo1.jpg">
+<div class="caption">
+<h3>The day I realized I liked you too much ❤️</h3>
+</div>
+</div>
+
+<div class="card glass">
+<img src="photo2.jpg">
+<div class="caption">
+<h3>One of my favorite memories ever ✨</h3>
+</div>
+</div>
+
+<div class="card glass">
+<img src="photo3.jpg">
+<div class="caption">
+<h3>You make life prettier honestly 🌙</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- PLAYLIST -->
+<section class="fade">
+
+<div class="spotify glass">
+
+<div class="small">
+🎶 Songs That Feel Like You
+</div>
+
+<h2>
+Every good song started reminding me of you.
+</h2>
+
+<p>
+Some songs remind me of memories.
+Some remind me of feelings.
+
+And somehow…
+every beautiful song started sounding like you.
+</p>
+
+<a href="https://open.spotify.com/" target="_blank">
+<button class="btn">
+Open Our Playlist 🎧
+</button>
+</a>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+<section class="final fade">
+
+<div class="small">
+Final Surprise
+</div>
+
+<h1>
+Happy Birthday,<br>My Love ❤️
+</h1>
+
+<p>
+I hope years from now,
+when you think about your birthdays,
+this is one of the nights you remember.
+
+Because you deserve to feel loved like this.
+Always.
+</p>
+
+<button class="btn">
+One Last Gift 🎁
+</button>
+
+</section>
 
 <script>
+
+/* ================= COUNTDOWN ================= */
+
 const targetDate = new Date("May 10, 2026 00:00:00").getTime();
 
-const timer = setInterval(function() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+const countdown = setInterval(()=>{
 
-  if (distance <= 0) {
-    clearInterval(timer);
-    document.getElementById("countdownPage").style.display = "none";
-    document.getElementById("mainContent").classList.remove("hidden");
-  } else {
-    const hours = Math.floor((distance / (1000*60*60)) % 24);
-    const minutes = Math.floor((distance / (1000*60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
+const now = new Date().getTime();
+const distance = targetDate - now;
 
-    document.getElementById("countdown").innerHTML =
-      hours + "h " + minutes + "m " + seconds + "s";
-  }
-}, 1000);
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
 
-function nextStep(step) {
-  for (let i = 1; i <= 6; i++) {
-    document.getElementById("step" + i).classList.add("hidden");
-  }
-  document.getElementById("step" + step).classList.remove("hidden");
+document.getElementById("countdown").innerHTML =
+hours + " : " + minutes + " : " + seconds;
+
+if(distance < 0){
+clearInterval(countdown);
+document.getElementById("countdown").innerHTML =
+"🎉 IT'S YOUR DAY 🎉";
 }
 
-function startExperience() {
-  document.getElementById("bgMusic").play();
-  nextStep(2);
+},1000);
+
+/* ================= MUSIC ================= */
+
+function openGift(){
+document.getElementById("music").play();
+
+window.scrollTo({
+top:window.innerHeight,
+behavior:"smooth"
+});
 }
 
-/* floating hearts */
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-  document.body.appendChild(heart);
+/* ================= FADE ================= */
 
-  setTimeout(() => heart.remove(), 6000);
-}, 500);
+const fades = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+});
+
+fades.forEach(el=>observer.observe(el));
+
+/* ================= PARTICLES ================= */
+
+for(let i=0;i<40;i++){
+
+let particle = document.createElement('div');
+
+particle.classList.add('particle');
+
+particle.style.left = Math.random()*100 + 'vw';
+
+particle.style.animationDuration =
+(Math.random()*10 + 5) + 's';
+
+particle.style.opacity = Math.random();
+
+document.body.appendChild(particle);
+
+}
+
 </script>
 
 </body>
