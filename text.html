@@ -1,1 +1,204 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 40px;
+  animation: fadeIn 1.5s ease;
+}
+
+.hidden { display: none; }
+
+h1, h2 {
+  animation: fadeUp 1s ease;
+}
+
+button {
+  padding: 12px 22px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #ff4d6d, #ff758f);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+img, video {
+  max-width: 90%;
+  border-radius: 15px;
+  margin-top: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: #ff4d6d;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0) scale(1);}
+  100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="countdownPage" class="container">
+  <h2>Something special is waiting… ❤️</h2>
+  <h1 id="countdown"></h1>
+</div>
+
+<div id="mainContent" class="hidden container">
+
+  <h1>🎉 Happy Birthday ❤️</h1>
+
+  <!-- Step 1 -->
+  <div id="step1">
+    <p>I made something just for you…</p>
+    <button onclick="startExperience()">Open Gift 🎁</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="step2" class="hidden">
+    <h2>💌 For You</h2>
+    <p>
+      From the moment you came into my life, everything just felt… lighter.  
+      You turned ordinary days into something I actually look forward to.  
+
+      I don’t know if I say this enough, but you matter to me more than you realize.  
+      Your smile, your voice, the way you exist in my life—it all means everything.  
+
+      I’m really grateful I get to call you mine. ❤️  
+
+      And today… is all about you.  
+    </p>
+    <button onclick="nextStep(3)">Next →</button>
+  </div>
+
+  <!-- Step 3 -->
+  <div id="step3" class="hidden">
+    <h2>🎥 Watch this</h2>
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+    <br>
+    <button onclick="nextStep(4)">Next →</button>
+  </div>
+
+  <!-- Step 4 -->
+  <div id="step4" class="hidden">
+    <h2>🎶 Our Playlist</h2>
+    <p>Every song here reminds me of you ❤️</p>
+    <a href="https://open.spotify.com/" target="_blank">Listen here</a>
+    <br>
+    <button onclick="nextStep(5)">Next →</button>
+  </div>
+
+  <!-- Step 5 -->
+  <div id="step5" class="hidden">
+    <h2>📸 Our Memories</h2>
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <br>
+    <button onclick="nextStep(6)">Final Surprise 🎁</button>
+  </div>
+
+  <!-- Final -->
+  <div id="step6" class="hidden">
+    <h2>🎁 Surprise</h2>
+    <p>
+      This isn’t the only gift…  
+      There’s something waiting for you in real life too 😉  
+    </p>
+  </div>
+
+</div>
+
+<script>
+const targetDate = new Date("May 10, 2026 00:00:00").getTime();
+
+const timer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance <= 0) {
+    clearInterval(timer);
+    document.getElementById("countdownPage").style.display = "none";
+    document.getElementById("mainContent").classList.remove("hidden");
+  } else {
+    const hours = Math.floor((distance / (1000*60*60)) % 24);
+    const minutes = Math.floor((distance / (1000*60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+      hours + "h " + minutes + "m " + seconds + "s";
+  }
+}, 1000);
+
+function nextStep(step) {
+  for (let i = 1; i <= 6; i++) {
+    document.getElementById("step" + i).classList.add("hidden");
+  }
+  document.getElementById("step" + step).classList.remove("hidden");
+}
+
+function startExperience() {
+  document.getElementById("bgMusic").play();
+  nextStep(2);
+}
+
+/* floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
